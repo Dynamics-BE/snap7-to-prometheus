@@ -1,0 +1,9 @@
+﻿@using snap7_to_prometheus.Models
+@model Configuration
+@foreach (var db in Model.DBReads)
+{
+    @foreach (var tag in db.Tags)
+    {
+        @tag.MetricsName@Html.Raw(" ")@tag.Data@:
+    }
+}

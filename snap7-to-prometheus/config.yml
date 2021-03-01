@@ -1,0 +1,21 @@
+﻿# this is an example, please modify
+
+PLCAddress: 192.168.0.2
+PLCRack: 0
+PLCSlot: 0
+ReadRateMs: 1000
+DBReads:
+  - DBNumber: 999
+    DBOffsetByte: 0
+    DBLengthByte: 16
+    Tags:
+      - Name: Example
+        MetricsName: mysystem_example_count
+        OffsetByte: 0
+        SizeByte: 8
+        Type: Int64
+      - Name: Example2
+        MetricsName: mysystem_example2_count
+        OffsetByte: 8
+        SizeByte: 8
+        Type: Int64

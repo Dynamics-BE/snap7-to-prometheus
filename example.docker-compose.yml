@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  snap7-to-prometheus:
+    build: ./snap7-to-prometheus
+    container_name: snap7-to-prometheus
+    restart: unless-stopped
+    hostname: snap7-to-prometheus
+    ports:
+      - 5489:80
+    volumes:
+      - ./config.yml:/app/config.yml
