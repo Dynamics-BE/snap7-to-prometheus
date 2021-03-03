@@ -11,8 +11,8 @@ For Siemens S7-1200/1500, see the [notes](http://snap7.sourceforge.net/snap7_cli
 Configure prometheus to use the metrics file that is available on http://`host`:5489/metrics
 
 ## Config file
-The config files has connection details and a list of tags that will be exposed in the metrics file
-Config file is reloaded automatically upon changes. (This doesn't work if config file is supplies via a docker volume.)
+The config file `./snap7-to-prometheus/config.yml` has connection details and a list of tags that will be exposed in the metrics file
+The application reloads the config file when change are detected. (With docker, container has to be restarted.)
 
 ### Types
 - `Bool` (Bit, `OffsetBit` must be supplied (default 0))
