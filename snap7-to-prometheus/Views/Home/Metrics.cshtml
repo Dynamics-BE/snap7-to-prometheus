@@ -4,6 +4,6 @@
 {
     @foreach (var tag in db.Tags)
     {
-        @tag.MetricsName@Html.Raw(" ")@tag.Data@:
+        @Html.Raw(tag.MetricsName)@Html.Raw(" ")@Html.Raw(tag.Data)@:
     }
 }
