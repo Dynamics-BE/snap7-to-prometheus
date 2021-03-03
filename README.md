@@ -1,6 +1,8 @@
 # snap7-to-prometheus
 Getting PLC tags out of Siemens PLCs and presenting them as a plaintext metrics file that can be read by prometheus.
 
+For Siemens S7-1200/1500, see the [notes](http://snap7.sourceforge.net/snap7_client.html#1200_1500)
+
 ## Building and running the appliction
 * copy `example.docker-compose.yml` to `docker-compose.yml` and adjust for your purposes
 * copy `./snap7-to-prometheus/config.yml` to `./config.yml` fill in your tags
