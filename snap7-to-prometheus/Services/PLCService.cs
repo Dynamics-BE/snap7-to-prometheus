@@ -76,20 +76,38 @@ namespace snap7_to_prometheus.Services
                 //Parse the db into parts
                 foreach(var tag in db.Tags)
                 {
-                    if (tag.Type == "Int64")
+                    switch (tag.Type)
                     {
-                        tag.Data = S7.GetLIntAt(buffer, tag.OffsetByte);
-                        Console.WriteLine($"Test data {tag.Data}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Unknown type for tag {tag.Name} success.");
+                        case "Bool":
+                            tag.Data = S7.GetBitAt(buffer, tag.OffsetByte, tag.OffsetBit);
+                            break;
+                        case "Int8":
+                            tag.Data = S7.GetByteAt(buffer, tag.OffsetByte);
+                            break;
+                        case "Int16":
+                            tag.Data = S7.GetIntAt(buffer, tag.OffsetByte);
+                            break;
+                        case "Int32":
+                            tag.Data = S7.GetDIntAt(buffer, tag.OffsetByte);
+                            break;
+                        case "Int64":
+                            tag.Data = S7.GetLIntAt(buffer, tag.OffsetByte);
+                            break;
+                        case "Float":
+                            tag.Data = S7.GetRealAt(buffer, tag.OffsetByte);
+                            break;
+                        case "Double":
+                            tag.Data = S7.GetLRealAt(buffer, tag.OffsetByte);
+                            break;
+                        case "String":
+                            tag.Data = S7.GetCharsAt(buffer, tag.OffsetByte, tag.StringLength);
+                            break;
+                        default:
+                            Console.WriteLine($"Unknown type for tag {tag.Name}");
+                            break;
                     }
                 }
             }
-
-
-
         }
     }
 }

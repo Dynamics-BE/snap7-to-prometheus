@@ -5,17 +5,25 @@ PLCRack: 0
 PLCSlot: 0
 ReadRateMs: 1000
 DBReads:
-  - DBNumber: 999
+  - DBNumber: 900
     DBOffsetByte: 0
     DBLengthByte: 16
     Tags:
-      - Name: Example
-        MetricsName: mysystem_example_count
+      - Name: Example1
+        MetricsName: mysystem_example1_count
         OffsetByte: 0
-        SizeByte: 8
         Type: Int64
-      - Name: Example2
+      - Name: Example3
         MetricsName: mysystem_example2_count
         OffsetByte: 8
-        SizeByte: 8
-        Type: Int64
+        OffsetBit: 4
+        Type: Bool
+  - DBNumber: 901
+    DBOffsetByte: 0
+    DBLengthByte: 200
+    Tags:
+      - Name: Example4
+        MetricsName: mysystem_example3_string
+        OffsetByte: 8
+        StringLength: 20
+        Type: String
