@@ -19,7 +19,9 @@ namespace snap7_to_prometheus.Models
                 }
                 else
                 {
-                    return $"{Name}=\"{Regex.Replace(ValueTag.Data.ToString(), @"[^\u0000-\u007F]+", string.Empty)}\"";
+                    var dataString = Regex.Replace(ValueTag.Data.ToString(), @"[^\u0000-\u007F]+", string.Empty);
+                    dataString = dataString.Replace("\0", string.Empty);
+                    return $"{Name}=\"{dataString}\"";
                 }
 
             }
