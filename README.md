@@ -25,14 +25,14 @@ Tags can have labels. This is used in the prometheus metric file as `{labelname1
 Tag with a label that has a static value and another label with a dynamic value:
 ```yaml
 - Name: MeterStatus1
-OffsetByte: 1004
-Type: String
-StringLength: 254
+  OffsetByte: 1004
+  Type: String
+  StringLength: 254
 - MetricsName: mytags_power
-Labels:
-- Name: meter
+  Labels:
+  - Name: meter
     Value: Appartment1
-- Name: status
+  - Name: status
     ValueTagName: MeterStatus1
 # Result: mytags_power{meter="Appartment1", status="Status read from PLC"}
 ```
