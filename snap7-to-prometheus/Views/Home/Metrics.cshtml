@@ -2,8 +2,8 @@
 @model Configuration
 @foreach (var db in Model.DBReads)
 {
-    @foreach (var tag in db.Tags)
+    @foreach (var tag in db.Tags.Where(t => t.MetricsName != null))
     {
-        @Html.Raw(tag.MetricsName)@Html.Raw(" ")@Html.Raw(tag.Data)@:
+        @Html.Raw(tag.FormattedMetricsNameWithLabels)@Html.Raw(" ")@Html.Raw(tag.Data)@:
     }
 }

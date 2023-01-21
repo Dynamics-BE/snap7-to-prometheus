@@ -14,5 +14,33 @@ namespace snap7_to_prometheus.Models
         public int StringLength { get; set; }
         public string Type { get; set; }
         public object Data { get; set; }
+        public ICollection<Label> Labels { get; set; }
+        public string FormattedMetricsNameWithLabels { 
+            get
+            {
+                if (Labels == null)
+                {
+                    return MetricsName;
+                }
+                else
+                {
+                    return $"{MetricsName}{{{String.Join(", ", Labels.Select(l => l.FormattedMetric))}}}";
+                }
+            }
+        }
+        public string FormattedTagReference
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(Name))
+                {
+                    return Name;
+                }
+                else
+                {
+                    return MetricsName;
+                }
+            }
+        }
     }
 }

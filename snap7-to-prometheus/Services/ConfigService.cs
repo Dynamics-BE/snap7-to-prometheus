@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -44,6 +45,43 @@ namespace snap7_to_prometheus.Services
             }
 
             Console.WriteLine($"Config file read succesfully.");
+
+            // Check tags
+            Console.WriteLine($"Checking tags...");
+            var allTags = readConfig.DBReads.SelectMany(db => db.Tags);
+            // Check if strings tags have a matrics name
+            var stringsTags = allTags.Where(tag => tag.Type == "String");
+            var stringsTagsWithMetricsName = stringsTags.Where(tag => !String.IsNullOrEmpty(tag.MetricsName));
+            foreach (var tag in stringsTagsWithMetricsName)
+            {
+                Console.WriteLine("Strings tags can't have a metrics name. Prometheus does not accept string data types. Removing Metrics name.");
+                tag.MetricsName = null;
+            }
+
+            // Attach labels
+            Console.WriteLine($"Attaching labels...");
+            // Attach the tags to labels
+            var tagsWithAttachableLable = allTags.Where(t => t.Labels != null);
+            foreach (var tag in tagsWithAttachableLable)
+            {
+                foreach (var label in tag.Labels.Where(l => !String.IsNullOrEmpty(l.ValueTagName)))
+                {
+                    var valueTag = allTags.Where(tag => tag.Name == label.ValueTagName).FirstOrDefault();
+                    if (valueTag == null)
+                    {
+                        Console.WriteLine($"In tag {tag.FormattedTagReference} for label {label.Name}: cannot find Tag {label.ValueTagName}, skipping...");
+                        continue;
+                    }
+                    else if (!String.IsNullOrEmpty(label.Value))
+                    {
+                        Console.WriteLine($"In tag {tag.FormattedTagReference} for label {label.Name}: has a ValueTag and a Value, ignoring value.");
+                        label.Value = null;
+                    }
+                    label.ValueTag = valueTag;
+
+                }
+            }
+
 
             ActiveConfig = readConfig;
         }

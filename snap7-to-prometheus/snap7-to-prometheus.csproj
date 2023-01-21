@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>snap7_to_prometheus</RootNamespace>
     <UserSecretsId>dcd5add4-d640-4fe3-bfaf-39f1c56a8eef</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="Sharp7" Version="1.1.79" />
-    <PackageReference Include="YamlDotNet" Version="9.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Sharp7" Version="1.1.82" />
+    <PackageReference Include="YamlDotNet" Version="12.3.1" />
   </ItemGroup>
 
 </Project>

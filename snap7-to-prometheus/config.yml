@@ -11,6 +11,13 @@ DBReads:
     Tags:
       - Name: Example1
         MetricsName: mysystem_example1_count
+        Labels:
+        - Name: label1
+          Value: static_value
+        - Name: label2
+          Value: another static_value
+        - Name: label3
+          ValueTagName: Example4
         OffsetByte: 0
         Type: Int64
       - Name: Example3
@@ -23,7 +30,6 @@ DBReads:
     DBLengthByte: 200
     Tags:
       - Name: Example4
-        MetricsName: mysystem_example3_string
         OffsetByte: 8
         StringLength: 20
         Type: String
