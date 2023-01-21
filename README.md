@@ -20,7 +20,7 @@ The config file `./snap7-to-prometheus/config.yml` has the connection details of
 This config file is automatically reloaded when changes are detected. Automatic config file reload does not work with docker, restart the container after changing config.
 
 ### Labels
-Tags can have labels. This is used in the prometheus metric file as `{labelname1=labelvalue1, labelname2=labelvalue2,}`. Labels can have a static value by specifying the Value or a reference to a tagname which has the value.
+Tags can have labels. This is used in the prometheus metric file as `{labelname1="labelvalue1", labelname2="labelvalue2"}`. Labels can have a static value by specifying the Value or a reference to a tagname which has the value.
 
 Tag with a label that has a static value and another label with a dynamic value:
 ```yaml
