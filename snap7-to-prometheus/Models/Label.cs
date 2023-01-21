@@ -1,4 +1,6 @@
-﻿namespace snap7_to_prometheus.Models
+﻿using System.Text.RegularExpressions;
+
+namespace snap7_to_prometheus.Models
 {
     public class Label
     {
@@ -17,7 +19,7 @@
                 }
                 else
                 {
-                    return $"{Name}=\"{ValueTag.Data}\"";
+                    return $"{Name}=\"{Regex.Replace(ValueTag.Data.ToString(), @"[^\u0000-\u007F]+", string.Empty)}\"";
                 }
 
             }
