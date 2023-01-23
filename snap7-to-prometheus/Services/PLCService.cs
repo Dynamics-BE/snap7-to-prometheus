@@ -102,7 +102,7 @@ namespace snap7_to_prometheus.Services
                         case "String":
                             // First char is the length
                             string data = S7.GetCharsAt(buffer, tag.OffsetByte, tag.StringLength);
-                            tag.Data = data.Substring(2, (int)data[1] + 1);
+                            tag.Data = data.Substring(2, (int)data[1]);
                             break;
                         default:
                             Console.WriteLine($"Unknown type for tag {tag.Name}");
