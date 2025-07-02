@@ -79,7 +79,7 @@ namespace snap7_to_prometheus.Services
                     switch (tag.Type)
                     {
                         case "Bool":
-                            tag.Data = S7.GetBitAt(buffer, tag.OffsetByte, tag.OffsetBit);
+                            tag.Data = S7.GetBitAt(buffer, tag.OffsetByte, tag.OffsetBit) ? 1 : 0;
                             break;
                         case "Int8":
                             tag.Data = S7.GetByteAt(buffer, tag.OffsetByte);
